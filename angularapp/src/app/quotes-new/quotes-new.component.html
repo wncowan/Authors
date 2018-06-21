@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Add New Quote For {{author}}</h1>
+    <form (keydown.enter)="$event.preventDefault()" (submit)="submit()">
+      <div class="form-group">
+        <label for="quote">Quote Text:</label>        
+        <input type="text" class="form-control" id="quote" name="quote.text" (keydown.enter)="submit()" [(ngModel)]="quote.text">
+        <div *ngIf="errors">
+          <p class="error" *ngFor="let error of errors">{{error}}</p>
+        </div>
+      </div>
+      <button class="btn btn-danger" [routerLink]="['/authors/'+author_id+'/quotes']">Cancel</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="text-center">Quotes by {{author?.name}}</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Quote</th>
+        <th scope="col">
+          Votes
+          <span *ngIf="!ascending; else down" (click)="quoteSort()"><i class="fas fa-sort-down"></i></span>
+          <ng-template #down>
+            <span (click)="quoteSort()"><i class="fas fa-sort-up"></i></span>
+          </ng-template>
+        </th>
+        <th scope="col">Actions</th>
+        <th scope="col"><button [routerLink]="['/authors/'+author_id+'/quotes/new']" class="btn btn-info">Add <i class="fas fa-comment"></i></button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quote of author?.quotes; let i = index">
+        <td>{{quote.text}}</td>
+        <td>{{quote.votes}}</td>
+        <td>
+          <button (click)="vote(i,true)" class="btn btn-primary"><i class="far fa-thumbs-up">Upvote</i></button>
+          <button (click)="vote(i,false)" class="btn btn-primary"><i class="far fa-thumbs-down">Downvote</i></button>
+          <button (click)="delete(i)" class="btn btn-danger"><i class="fas fa-eraser">Delete</i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Here is the new ngFor syntax:
+<ul>
+    <li *ngFor="let item of items; let i = index">
+      {{i}} {{item}}
+    </li>
+</ul> -->

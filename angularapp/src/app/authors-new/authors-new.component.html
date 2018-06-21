@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Add New Author</h1>
+    <form (keydown.enter)="$event.preventDefault()" (submit)="submit()">
+      <div class="form-group">
+        <label for="author_name">Author's Name:</label>        
+        <input type="text" class="form-control" id="author_name" name="newAuthor.name" (keydown.enter)="submit()" [(ngModel)]="newAuthor.name">
+        <div *ngIf="errors">
+          <p class="error" *ngFor="let error of errors">{{error}}</p>
+        </div>
+      </div>
+      <button class="btn btn-danger" [routerLink]="['/authors']">Cancel</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
